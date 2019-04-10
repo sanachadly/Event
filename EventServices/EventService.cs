@@ -1,7 +1,6 @@
 ﻿using Data.Infrastructure;
 using EventDomain.Entities;
-
-using ServicePattern;
+using EventServicePatern;
 using System;
 using System.Collections.Generic;
 using System.Linq;

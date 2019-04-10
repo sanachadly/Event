@@ -1,0 +1,164 @@
+﻿@model IEnumerable<EventClient.Models.TaskModels>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tasks</title>
+
+    @Styles.Render("~/template/css")
+
+</head>
+<body class="body-wrapper">
+
+    <!--================================
+    =            Page Title            =
+    =================================-->
+    <section class="page-title bg-title overlay-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="title">
+                        <h3>Task</h3>
+                    </div>
+                    <ol class="breadcrumb p-0 m-0">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Index</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    @using (Html.BeginForm())
+    {
+        <table class="col col-lg-2" width="500">
+            <tr>
+
+
+                <td>
+
+                    <div class="col col-lg-2" width="300">
+                        @Html.TextBox("searchString")
+                        <form action="#" class="pull-right mail-src-position"></form>
+
+
+                    </div>
+
+                </td>
+                <td>
+                    <div class="subscribe-button">
+                        <button class="btn btn-main-md" value="Search" id="submit">Search</button>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    }
+
+  
+        <section>
+            <div class="col-lg-8 col-md-12">
+                <button class="btn btn-main-md" type="button">
+                    @Html.ActionLink("New Task", "Create")
+                    
+                </button>
+            </div>
+        </section>
+   
+
+
+
+    <section class="section schedule">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                </div>
+            </div>
+            <div class="schedule-contents bg-schedule">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active schedule-item" id="nov20">
+                        <!-- Headings -->
+                        <ul class="m-0 p-0">
+                            <li class="headings">
+                                <div class="time">Time</div>
+                                <div class="speaker">Object</div>
+                                <div class="subject">User</div>
+                                <div class="venue">Event</div>
+                            </li>
+                            <!-- Schedule Details -->
+                            @foreach (var item in Model)
+                            {
+                                <li class="schedule-details">
+                                    <div class="block">
+                                        <!-- time -->
+
+                                        <div class="time">
+                                            <i class="fa fa-clock-o"></i>
+                                            <span class="time">@Html.DisplayFor(modelItem => item.DateLimite)</span>
+                                        </div>
+                                        <!-- Speaker -->
+                                        <div class="speaker">
+
+                                            <span class="name">@Html.DisplayFor(modelItem => item.Objet)</span>
+                                        </div>
+                                        <!-- Subject -->
+                                        <div class="subject">
+                                            @foreach (EventClient.Models.UserModels iterator in ViewBag.users)
+                                            {
+                                                if (item.UserFK == iterator.UserID)
+                                                {
+                                                    @iterator.Nom
+                                                }
+
+                                            }
+                                        </div>
+                                        <!-- Venue -->
+
+
+
+                                        <div class="venue">
+                                            @foreach (EventClient.Models.EventModels iterator in ViewBag.task)
+                                            {
+                                                if (item.EventFK == iterator.EventID)
+                                                {
+                                                    @iterator.Titre
+                                                }
+
+                                            }
+
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-pencil"></i>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.TaskID }) |
+                                            <i class="fa fa-check"></i>
+                                            @Html.ActionLink("Details", "Details", new { id = item.TaskID }) |
+                                            <i class="fa fa-trash-o "></i>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.TaskID })
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </li>}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-theme">
+                @Html.ActionLink("Print", "PrintViewToPdf")
+            </button>
+        </div>
+
+    </section>
+
+
+
+
+
+
+</body>

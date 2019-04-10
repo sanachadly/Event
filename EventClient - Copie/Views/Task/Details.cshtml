@@ -1,0 +1,84 @@
+﻿@model EventClient.Models.TaskModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EventManagement</title>
+
+    @Styles.Render("~/template/css")
+
+</head>
+<body class="body-wrapper">
+    <section class="page-title bg-title overlay-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="title">
+                        <h3>Task</h3>
+                    </div>
+                    <ol class="breadcrumb p-0 m-0">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">DetailTask</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Details</title>
+    </head>
+    <body>
+        <div>
+            <h4>TaskModels</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Objet)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Objet)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateLimite)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DateLimite)
+                </dd>
+
+                <dt>
+                    Event
+                </dt>
+
+                <dd>
+                    @ViewBag.ev
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UserFK)
+                </dt>
+
+                <dd>
+                    @ViewBag.us
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.TaskID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </body>
+</body>
+    

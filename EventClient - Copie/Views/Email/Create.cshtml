@@ -1,0 +1,49 @@
+﻿@model EventClient.Models.TaskModels
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EventManagement</title>
+
+    @Styles.Render("~/template/css")
+
+</head>
+<body class="body-wrapper">
+    <section class="page-title bg-title overlay-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="title">
+                        <h3>Task</h3>
+                    </div>
+                    <ol class="breadcrumb p-0 m-0">
+                        <li class="breadcrumb-item"><a href="index.html">CreateTask</a></li>
+                        <li class="breadcrumb-item active">SendMail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+@using (Html.BeginForm("Create", "Email", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <span class="form-control-static">Reciever email:</span>
+    <input class="form-control" type="text" name="recieverEmail" />
+    <span class="form-control-static">Subject:</span>
+    <input class="form-control" type="text" name="subject" />
+    <span class="form-control-static">Message:</span>
+    <input class="form-control" type="text" name="message" />
+    <br />
+    <br />
+    <button class="btn btn-primary" type="submit">Send email</button>
+}

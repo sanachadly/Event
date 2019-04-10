@@ -1,0 +1,136 @@
+﻿@model IEnumerable<EventClient.Models.EventViewModel>
+
+
+<section class="page-title bg-title overlay-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="title">
+                    <h3>Our Events</h3>
+                </div>
+                <ol class="breadcrumb p-0 m-0">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Our Events</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<p>user= @ViewBag.u</p>
+<button onclick="
+    Location.href='@Url.Action("Create","Event",new { id=ViewBag.u})'
+    ">
+    <i></i>
+</button>
+@Html.ActionLink("Back to List", "Create", new { id = ViewBag.u })
+@using (Html.BeginForm())
+{
+    <table class="col col-lg-2" width="500">
+        <tr>
+
+
+            <td>
+
+                <div class="col col-lg-2" width="300">
+                    @Html.TextBox("searchString")
+                    <form action="#" class="pull-right mail-src-position"></form>
+
+
+                </div>
+
+            </td>
+            <td>
+                <div class="subscribe-button">
+                    <button class="btn btn-main-md" value="Search" id="submit">Search</button>
+                </div>
+            </td>
+        </tr>
+
+    </table>
+}
+
+
+
+
+<section class="news section">
+
+    <div class="container">
+
+
+        <div class="row mt-30">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-4 col-md-6 col-sm-8 col-10 m-auto">
+                    <div class="blog-post">
+                        <div class="post-thumb">
+                            <a href="news-single.html">
+                                <img src=" @Url.Content("~/Content/images/"+item.Image)" alt="post-image" class="img-fluid" />
+                            </a>
+                        </div>
+                        <div class="post-content">
+                            <div class="date">
+                                <h4><span>@Html.DisplayFor(modelItem => item.DateDebut))</span></h4>
+                            </div>
+                            <div class="post-title">
+                                <h2><a href="news-single.html"> @Html.DisplayFor(modelItem => item.Titre)</a></h2>
+                            </div>
+                            <div class="post-meta">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-user-o"></i>
+                                        <a href="#">category : @Html.DisplayFor(modelItem => item.Categorie)</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-heart-o"></i>
+                                        <a href="#">Lieu : @Html.DisplayFor(modelItem => item.Lieu)</a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                            @if (item.reserver.Equals(0))
+                            {
+                                @Html.ActionLink("Reserver", "CreateRes", new { id = item.Id })
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("dèReserver", "DeleteRes", new { id = item.Id })
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
