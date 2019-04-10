@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -18,6 +19,8 @@ namespace EventClient
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            StripeConfiguration.SetApiKey(ConfigurationManager.AppSettings["stripeSecretKey"]);
+
         }
     }
 }

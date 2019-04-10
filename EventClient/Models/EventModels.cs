@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Web;
 
 namespace EventClient.Models
@@ -17,6 +18,7 @@ namespace EventClient.Models
         public String Image { get; set; }
         public String Lieu { get; set; }
         public String Description { get; set; }
+        public ICollection<TicketViewModel> tickets { get; set; }
 
     }
 }

@@ -1,6 +1,4 @@
-﻿@model IEnumerable<EventClient.Models.EventViewModel>
-
-
+﻿@model IEnumerable<EventDomain.Entities.Ticket>
 
 @{
     Layout = null;
@@ -41,7 +39,7 @@
                         <!-- Dropdown list -->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="about-us.html">About Us</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Depences")">Organizers</a>
+                            <a class="dropdown-item" href="single-speaker.html">Organizers</a>
                             <a class="dropdown-item" href="gallery.html">Gallery</a>
                             <a class="dropdown-item" href="testimonial.html">Best Moment</a>
                         </div>
@@ -74,8 +72,10 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-
-
+                <a href="#" class="ticket">
+                    <img src="~/Content/images/icon/ticket.png" alt="ticket">
+                    <span>Booking</span>
+                </a>
             </div>
 
         </div>
@@ -86,39 +86,48 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="title">
-                        <h3> Event ! </h3>
+                        <h3>Event's Ticket </h3>
                     </div>
                     <ol class="breadcrumb p-0 m-0">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-
-                        <div>
-                            @Html.ActionLink("Top3  Event's !", "Best")
-                        </div>
-
+                        <li class="breadcrumb-item active">Ticket System</li>
                     </ol>
                 </div>
             </div>
         </div>
     </section>
 
-
+   
+    </section>
     <section class="section schedule">
-        <div class="row">
-            <div class="col-12">
-                <div class="schedule-tab">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h3>Ticket <span class="alternate"> Management</span></h3>
+                        <p>
+                            @Html.ActionLink("New Event", "Create")
+                        </p>
 
+                    </div>
                 </div>
-                <div class="schedule-contents bg-schedule">
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active schedule-item" id="nov20">
-                            <table class="table">
+            </div>
+        </div>
+        <section class="section schedule">
+            <div class="row">
+                <div class="col-12">
+                    <div class="schedule-tab">
+
+                    </div>
+                    <div class="schedule-contents bg-schedule">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active schedule-item" id="nov20">
                                 <!-- Headings -->
 
                                 <ul class="m-0 p-0">
                                     <li class="headings">
-                                        <div class="time">  @Html.DisplayNameFor(model => model.Title) </div>
-                                        <div class="speaker">  @Html.DisplayNameFor(model => model.Price)</div>
-                                        <div class="subject">     @Html.DisplayNameFor(model => model.StartDate) </div>
+                                        <div class="time"> @Html.DisplayNameFor(model => model.DateValidite) </div>
+                                        <div class="speaker"> @Html.DisplayNameFor(model => model.NumberTicket)</div>
+                                        <div class="subject"> @Html.DisplayNameFor(model => model.EventID) </div>
                                         <div class="category">Management</div>
                                     </li>
                                     <!-- Schedule Details -->
@@ -130,26 +139,60 @@
 
                                                 <div class="time">
                                                     <i class="fa fa-clock-o"></i>
-                                                    <span class="time">  @Html.DisplayFor(modelItem => item.Title) </span>
+                                                    <span class="time">  @Html.DisplayFor(modelItem => item.DateValidite) </span>
                                                 </div>
                                                 <!-- Speaker -->
                                                 <div class="speaker">
 
-                                                    <span class="speaker">   @Html.DisplayFor(modelItem => item.Price)</span>
+                                                    <span class="speaker">  @Html.DisplayFor(modelItem => item.NumberTicket)</span>
                                                 </div>
                                                 <!-- Subject -->
-                                                <div class="subject">  @Html.DisplayFor(modelItem => item.StartDate)</div>
+                                                <div class="subject">   @Html.DisplayFor(modelItem => item.EventID)</div>
+                                                <!-- Venue -->
 
-
-                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.EventID }) |*@
-                                                @Html.ActionLink("View", "View", new { id = item.EventID })
+                                                <div class="category">
+                                                    @Html.ActionLink("Edit", "Edit", new { id = item.TicketID }) ,
+                                                    @Html.ActionLink("Details", "Details", new { id = item.TicketID }) ,
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.TicketID })
+                                                </div>
+                                            </div>
                                         </li>
 
-
-
-
                                     }
+
                                 </ul>
+
+
+                                
+
+
+                            </div>
+        </section>
+        <section class="cta-subscribe bg-subscribe overlay-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mr-auto">
+                        <!-- Subscribe Content -->
+                        <div class="content">
+                            
+                          
+                        </div>
+                    </div>
+                    <div class="col-md-6 ml-auto align-self-center">
+                        <!-- Subscription form -->
+                        <form action="#" class="row">
+                            <div class="col-lg-8 col-md-12">
+                                <input type="email" class="form-control main white mb-lg-0" placeholder="Email">
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="subscribe-button">
+                                    <button class="btn btn-main-md">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
 

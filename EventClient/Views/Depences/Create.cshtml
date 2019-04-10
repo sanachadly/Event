@@ -1,0 +1,185 @@
+﻿@model EventClient.Models.DepencesViewModel
+
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EventManagement</title>
+
+    @Styles.Render("~/template/css")
+
+</head>
+<body class="body-wrapper">
+
+    <!--========================================
+    =            Navigation Section            =
+    =========================================-->
+    <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
+        <div class="container-fluid p-0">
+
+            <!-- logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="~/Content/images/imag.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item dropdown active dropdown-slide">
+                        <a class="nav-link" href="#" data-toggle="dropdown">
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown dropdown-slide">
+                        <a class="nav-link" href="#" data-toggle="dropdown">Pages<span></span></a>
+                        <!-- Dropdown list -->
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="about-us.html">About Us</a>
+                            <a class="dropdown-item" href="single-speaker.html">Organizers</a>
+                            <a class="dropdown-item" href="gallery.html">Gallery</a>
+                            <a class="dropdown-item" href="testimonial.html">Best Moment</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown dropdown-slide">
+                        <a class="nav-link" href="#" data-toggle="dropdown">Scheduale<span></span></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="about-us.html">Today</a>
+                            <a class="dropdown-item" href="single-speaker.html">This Week</a>
+                            <a class="dropdown-item" href="gallery.html">This Month</a>
+
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown dropdown-slide">
+                        <a class="nav-link" href="#" data-toggle="dropdown">
+                            Categories
+                            <span></span>
+                        </a>
+                        <!-- Dropdown list -->
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="news.html">Business</a>
+                            <a class="dropdown-item" href="news.html">Culture</a>
+                            <a class="dropdown-item" href="news.html">Entertement</a>
+                            <a class="dropdown-item" href="news.html">Occasion</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+              
+            </div>
+
+        </div>
+    </nav>
+
+
+    <section class="section gallery">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </section>
+    <section class="section schedule">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h3>Depence <span class="alternate"> Management</span></h3>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--================================
+        =            Page Title            =
+        =================================-->
+        <section class="page-title bg-title overlay-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="title">
+                            <h3> Depences ! </h3>
+                        </div>
+                        <ol class="breadcrumb p-0 m-0">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <div>
+                                @Html.ActionLink(" Depences List", "Index")
+                            </div>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--====  End of Page Title  ====-->
+
+        <section class="section contact-form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+
+                            <p> Welcome To Depences  </p>
+                        </div>
+                    </div>
+                </div>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                       
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Objectif, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Objectif, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Objectif, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Valeur, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Valeur, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Valeur, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EventID, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EventID, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EventID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-12 text-center">
+                                <input type="submit" value="Create" class="btn btn-main-md" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                

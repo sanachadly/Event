@@ -41,7 +41,7 @@
                         <!-- Dropdown list -->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="about-us.html">About Us</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Depences")">Organizers</a>
+                            <a class="dropdown-item" href="single-speaker.html">Organizers</a>
                             <a class="dropdown-item" href="gallery.html">Gallery</a>
                             <a class="dropdown-item" href="testimonial.html">Best Moment</a>
                         </div>
@@ -86,13 +86,12 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="title">
-                        <h3> Event ! </h3>
+                        <h3> Top3  Event's ! </h3>
                     </div>
                     <ol class="breadcrumb p-0 m-0">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-
                         <div>
-                            @Html.ActionLink("Top3  Event's !", "Best")
+                            @Html.ActionLink(" Event List", "Index")
                         </div>
 
                     </ol>
@@ -100,6 +99,8 @@
             </div>
         </div>
     </section>
+
+
 
 
     <section class="section schedule">
@@ -142,8 +143,8 @@
 
 
                                                 @*@Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.EventID }) |*@
+                                                    @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
+                                                    @Html.ActionLink("Delete", "Delete", new { id = item.EventID }) |*@
                                                 @Html.ActionLink("View", "View", new { id = item.EventID })
                                         </li>
 
@@ -153,3 +154,69 @@
                                     }
                                 </ul>
 
+
+
+
+
+
+
+
+                                @*<table class="table">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Price)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.StartDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.EndDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Image)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.place)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Description)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.StartDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EndDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Image)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.place)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
+                                                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
+                                                @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </table>*@
