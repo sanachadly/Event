@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EventClient.Models.EventViewModel>
+﻿@model EventClient.Models.RapportModel
+
 
 
 
@@ -13,7 +14,7 @@
     @Styles.Render("~/template/css")
 
 </head>
-<body class="body-wrapper">
+<body class="col-12 text-center">
 
     <!--========================================
     =            Navigation Section            =
@@ -41,7 +42,7 @@
                         <!-- Dropdown list -->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="about-us.html">About Us</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Depences")">Organizers</a>
+                            <a class="dropdown-item" href="single-speaker.html">Organizers</a>
                             <a class="dropdown-item" href="gallery.html">Gallery</a>
                             <a class="dropdown-item" href="testimonial.html">Best Moment</a>
                         </div>
@@ -86,11 +87,13 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="title">
-                        <h3> Event ! </h3>
+                        <h3> Event! </h3>
                     </div>
                     <ol class="breadcrumb p-0 m-0">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-
+                        <div>
+                            @Html.ActionLink(" Event List", "Index")
+                        </div>
                         <div>
                             @Html.ActionLink("Top3  Event's !", "Best")
                         </div>
@@ -102,54 +105,38 @@
     </section>
 
 
-    <section class="section schedule">
-        <div class="row">
-            <div class="col-12">
-                <div class="schedule-tab">
 
-                </div>
-                <div class="schedule-contents bg-schedule">
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active schedule-item" id="nov20">
-                            <table class="table">
-                                <!-- Headings -->
+    <div>
+       
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalDepence)
+            </dt>
 
-                                <ul class="m-0 p-0">
-                                    <li class="headings">
-                                        <div class="time">  @Html.DisplayNameFor(model => model.Title) </div>
-                                        <div class="speaker">  @Html.DisplayNameFor(model => model.Price)</div>
-                                        <div class="subject">     @Html.DisplayNameFor(model => model.StartDate) </div>
-                                        <div class="category">Management</div>
-                                    </li>
-                                    <!-- Schedule Details -->
-                                    @foreach (var item in Model)
-                                    {
-                                        <li class="schedule-details">
-                                            <div class="block">
-                                                <!-- time -->
+            <dd>
+                @Html.DisplayFor(model => model.TotalDepence)
+            </dd>
 
-                                                <div class="time">
-                                                    <i class="fa fa-clock-o"></i>
-                                                    <span class="time">  @Html.DisplayFor(modelItem => item.Title) </span>
-                                                </div>
-                                                <!-- Speaker -->
-                                                <div class="speaker">
+            <dt>
+                @Html.DisplayNameFor(model => model.RevenueNet)
+            </dt>
 
-                                                    <span class="speaker">   @Html.DisplayFor(modelItem => item.Price)</span>
-                                                </div>
-                                                <!-- Subject -->
-                                                <div class="subject">  @Html.DisplayFor(modelItem => item.StartDate)</div>
+            <dd>
+                @Html.DisplayFor(model => model.RevenueNet)
+            </dd>
 
+            <dt>
+                @Html.DisplayNameFor(model => model.PourcentageGain)
+            </dt>
 
-                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.EventID }) |*@
-                                                @Html.ActionLink("View", "View", new { id = item.EventID })
-                                        </li>
+            <dd>
+                @Html.DisplayFor(model => model.PourcentageGain)
+            </dd>
 
-
-
-
-                                    }
-                                </ul>
-
+        </dl>
+    </div>
+    <p>
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
+            @Html.ActionLink("Back to List", "Index")*@
+    </p>

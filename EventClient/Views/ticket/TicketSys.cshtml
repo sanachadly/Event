@@ -1,0 +1,217 @@
+﻿@model EventClient.Models.EventViewModel
+
+
+
+
+
+@{
+    Layout = null;
+}
+
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>EventManagement</title>
+
+        @Styles.Render("~/template/css")
+
+    </head>
+    <body class="body-wrapper">
+
+        <!--========================================
+        =            Navigation Section            =
+        =========================================-->
+        <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
+            <div class="container-fluid p-0">
+
+                <!-- logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/Content/images/imag.png" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item dropdown active dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">Pages<span></span></a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="about-us.html">About Us</a>
+                                <a class="dropdown-item" href="single-speaker.html">Organizers</a>
+                                <a class="dropdown-item" href="gallery.html">Gallery</a>
+                                <a class="dropdown-item" href="testimonial.html">Best Moment</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">Scheduale<span></span></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="about-us.html">Today</a>
+                                <a class="dropdown-item" href="single-speaker.html">This Week</a>
+                                <a class="dropdown-item" href="gallery.html">This Month</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">
+                                Categories
+                                <span></span>
+                            </a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="news.html">Business</a>
+                                <a class="dropdown-item" href="news.html">Culture</a>
+                                <a class="dropdown-item" href="news.html">Entertement</a>
+                                <a class="dropdown-item" href="news.html">Occasion</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="ticket">
+                        <img src="~/Content/images/icon/ticket.png" alt="ticket">
+                        <span>Booking</span>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+
+
+        <section class="section gallery">
+            <div class="container">
+                <div class="row">
+
+                </div>
+            </div>
+        </section>
+        <section class="section schedule">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h3>Ticket <span class="alternate"> Management</span></h3>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.place, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.place, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.place, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label>   Name  </label>
+                    </div>
+                    <div>
+                        <input name="Nom" type="text" size="10000" value="" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>   Phone  </label>
+                    </div>
+                    <div>
+                        <input name="phone" type="tel" size="10000" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>   Mail </label>
+                    </div>
+                    <div>
+                        <input name="Nom" type="email" size="10000" value="" />
+                    </div>
+                </div>
+            }
+
+
+            @using (Html.BeginForm("Charge", "Form", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <script src="https://checkout.stripe.com/checkout.js"
+                        class="stripe-button"
+                        data-key="pk_test_yFYMtDKzGH2aZqo6S0g0YJTN002wivq7oZ"
+                        data-amount="14"
+                        @*data-amount="@ViewBag.EventPrice"*@
+                        data-name="Funny Ant"
+                        data-description='JavaScript Framework Guide'
+                        data-image="/Content/images/main-book.png">
+                </script>
+
+            }
+            @*<div class="form-group">
+            <div class="col-12 text-center">
+                <input type="submit" value="Payer" class="btn btn-main-md" />
+
+            </div>
+        </div>*@
+
+
+                <div>
+
+                    @Html.ActionLink(" Download", "Index")
+                    </div>

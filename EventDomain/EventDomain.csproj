@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Depences.cs" />
     <Compile Include="Entities\Event.cs" />
     <Compile Include="Entities\Reservation.cs" />
     <Compile Include="Entities\Sondage.cs" />

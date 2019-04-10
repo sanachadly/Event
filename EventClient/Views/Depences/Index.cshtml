@@ -1,0 +1,162 @@
+﻿@model IEnumerable<EventClient.Models.DepencesViewModel>
+odel IEnumerable<EventDomain.Entities.Ticket>
+
+    @{
+        Layout = null;
+    }
+
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>EventManagement</title>
+
+        @Styles.Render("~/template/css")
+
+    </head>
+    <body class="body-wrapper">
+
+        <!--========================================
+        =            Navigation Section            =
+        =========================================-->
+        <nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
+            <div class="container-fluid p-0">
+
+                <!-- logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/Content/images/imag.png" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item dropdown active dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">
+                                <span>Home</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">Pages<span></span></a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="about-us.html">About Us</a>
+                                <a class="dropdown-item" href="single-speaker.html">Organizers</a>
+                                <a class="dropdown-item" href="gallery.html">Gallery</a>
+                                <a class="dropdown-item" href="testimonial.html">Best Moment</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">Scheduale<span></span></a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="about-us.html">Today</a>
+                                <a class="dropdown-item" href="single-speaker.html">This Week</a>
+                                <a class="dropdown-item" href="gallery.html">This Month</a>
+
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown dropdown-slide">
+                            <a class="nav-link" href="#" data-toggle="dropdown">
+                                Categories
+                                <span></span>
+                            </a>
+                            <!-- Dropdown list -->
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="news.html">Business</a>
+                                <a class="dropdown-item" href="news.html">Culture</a>
+                                <a class="dropdown-item" href="news.html">Entertement</a>
+                                <a class="dropdown-item" href="news.html">Occasion</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                   
+                   
+                </div>
+
+            </div>
+        </nav>
+
+        <section class="page-title bg-title overlay-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="title">
+                            <h3>Event's Depences </h3>
+                        </div>
+                        <ol class="breadcrumb p-0 m-0">
+                            <li class="breadcrumb-item active">Depences System</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        </section>
+        <section class="section schedule">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h3>Depence <span class="alternate"> Management</span></h3>
+                            <p>
+                                @Html.ActionLink("New Depence", "Create")
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="section schedule">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="schedule-tab">
+
+                        </div>
+                        <div class="schedule-contents bg-schedule">
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active schedule-item" id="nov20">
+                                    <table class="table">
+                                        <!-- Headings -->
+
+                                        <ul class="m-0 p-0">
+                                            <li class="headings">
+                                                <div class="time">@Html.DisplayNameFor(model => model.Objectif) </div>
+                                                <div class="speaker"> @Html.DisplayNameFor(model => model.Valeur)</div>
+                                                <div class="subject">  @Html.DisplayNameFor(model => model.EventID) </div>
+                                                <div class="category">Management</div>
+                                            </li>
+                                            <!-- Schedule Details -->
+                                            @foreach (var item in Model)
+                                            {
+                                                <li class="schedule-details">
+                                                    <div class="block">
+                                                        <!-- time -->
+
+                                                        <div class="time">
+                                                            <i class="fa fa-clock-o"></i>
+                                                            <span class="time"> @Html.DisplayFor(modelItem => item.Objectif) </span>
+                                                        </div>
+                                                        <!-- Speaker -->
+                                                        <div class="speaker">
+
+                                                            <span class="speaker">   @Html.DisplayFor(modelItem => item.Valeur)</span>
+                                                        </div>
+                                                        <!-- Subject -->
+                                                        <div class="subject"> @Html.DisplayFor(modelItem => item.EventID)</div>
+
+                                                        @Html.ActionLink("Edit", "Edit", new { id = item.DepenceID }) |
+                                                        @Html.ActionLink("Details", "Details", new { id = item.DepenceID }) |
+                                                        @Html.ActionLink("Delete", "Delete", new { id = item.DepenceID })
+                                    
+                                        </li>
+
+
+
+
+                                    }
+                                            </ul>

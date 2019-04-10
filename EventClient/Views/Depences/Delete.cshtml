@@ -1,4 +1,6 @@
-﻿@model IEnumerable<EventClient.Models.EventViewModel>
+﻿@model EventClient.Models.DepencesViewModel
+
+
 
 
 
@@ -41,7 +43,7 @@
                         <!-- Dropdown list -->
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="about-us.html">About Us</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Depences")">Organizers</a>
+                            <a class="dropdown-item" href="single-speaker.html">Organizers</a>
                             <a class="dropdown-item" href="gallery.html">Gallery</a>
                             <a class="dropdown-item" href="testimonial.html">Best Moment</a>
                         </div>
@@ -74,8 +76,7 @@
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
-
-
+               
             </div>
 
         </div>
@@ -86,70 +87,87 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="title">
-                        <h3> Event ! </h3>
+                        <h3> Delete! </h3>
                     </div>
                     <ol class="breadcrumb p-0 m-0">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
 
+
+
                         <div>
-                            @Html.ActionLink("Top3  Event's !", "Best")
+                            @Html.ActionLink("Depences List", "Index")
                         </div>
+
 
                     </ol>
                 </div>
             </div>
         </div>
     </section>
+    <!--====  End of Page Title  ====-->
 
+    <section class="section contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
 
-    <section class="section schedule">
-        <div class="row">
-            <div class="col-12">
-                <div class="schedule-tab">
-
+                    </div>
                 </div>
-                <div class="schedule-contents bg-schedule">
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active schedule-item" id="nov20">
-                            <table class="table">
-                                <!-- Headings -->
-
-                                <ul class="m-0 p-0">
-                                    <li class="headings">
-                                        <div class="time">  @Html.DisplayNameFor(model => model.Title) </div>
-                                        <div class="speaker">  @Html.DisplayNameFor(model => model.Price)</div>
-                                        <div class="subject">     @Html.DisplayNameFor(model => model.StartDate) </div>
-                                        <div class="category">Management</div>
-                                    </li>
-                                    <!-- Schedule Details -->
-                                    @foreach (var item in Model)
-                                    {
-                                        <li class="schedule-details">
-                                            <div class="block">
-                                                <!-- time -->
-
-                                                <div class="time">
-                                                    <i class="fa fa-clock-o"></i>
-                                                    <span class="time">  @Html.DisplayFor(modelItem => item.Title) </span>
-                                                </div>
-                                                <!-- Speaker -->
-                                                <div class="speaker">
-
-                                                    <span class="speaker">   @Html.DisplayFor(modelItem => item.Price)</span>
-                                                </div>
-                                                <!-- Subject -->
-                                                <div class="subject">  @Html.DisplayFor(modelItem => item.StartDate)</div>
+            </div>
 
 
-                                                @*@Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
-                                                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
-                                                @Html.ActionLink("Delete", "Delete", new { id = item.EventID }) |*@
-                                                @Html.ActionLink("View", "View", new { id = item.EventID })
-                                        </li>
+            <body>
+                <div>
 
 
 
 
-                                    }
-                                </ul>
 
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Objectif)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Objectif)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Valeur)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Valeur)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EventID)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.EventID)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="col-12 text-center">
+                                <input type="submit" value="Delete" class="btn btn-main-md" /> 
+                             
+                            </div>
+                        }
+                    </div>

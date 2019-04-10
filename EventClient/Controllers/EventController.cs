@@ -1,193 +1,137 @@
 ﻿using EventClient.Models;
-using EventDomain.Entities;
 using EventServices;
-using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-
 
 namespace EventClient.Controllers
 {
     public class EventController : Controller
     {
-        // GET: Event
+
         EventService es = new EventService();
-        ReservationService rs = new ReservationService();
+        // GET: Event
         public ActionResult Index()
         {
-            
-            List<EventViewModel> lists = new List<EventViewModel>();
-            foreach (var item in es.GetAll())
-            {
-                EventViewModel evm = new EventViewModel();
-                evm.Id= item.EventID;
-                evm.DateDebut = item.DateDebut;
-                evm.DateFin = item.DateFin;
-                evm.Description = item.Description;
-                evm.Image = item.Image;
-                evm.UserId = item.UserId;
-                evm.Lieu = item.Lieu;
-                evm.Titre = item.Titre;
-              evm.Categorie = (EventClient.Models.Categorie)item.Categorie;
-                if (rs.isReserved(1, item.EventID).Equals("true"))
-                {
-                    evm.reserver = 1;
-                }
-                else
-                {
-                    evm.reserver = 0;
-                }
-                lists.Add(evm);
 
+            var Event = es.GetAll();
+
+            List<EventViewModel> liste = new List<EventViewModel>();
+            foreach (var item in Event)
+            {
+                liste.Add(
+                    new EventViewModel
+                    {
+                        EventID = item.EventID,
+                        Title= item.Titre,
+                        Description = item.Description,
+                        place = item.Lieu,
+                        StartDate = item.DateDebut,
+                        EndDate=item.DateFin,
+                        Image=item.Image,
+                        Price = item.Price
+                    });
             }
-            return View(lists);
+
+            return View(liste);
         }
-        [HttpPost]
-        public ActionResult Index(string searchString)
+
+        public ActionResult Best()
         {
 
-            List<EventViewModel> lists = new List<EventViewModel>();
-            foreach (var item in es.GetAll())
+            var Event = es.BestOf();
+
+            List<EventViewModel> liste = new List<EventViewModel>();
+            foreach (var item in Event)
             {
-                EventViewModel evm = new EventViewModel();
-                evm.Id = item.EventID;
-                evm.DateDebut = item.DateDebut;
-                evm.DateFin = item.DateFin;
-                evm.Description = item.Description;
-                evm.Image = item.Image;
-                evm.UserId = item.UserId;
-                evm.Lieu = item.Lieu;
-                evm.Titre = item.Titre;
-                evm.Categorie = (EventClient.Models.Categorie)item.Categorie;
-                if (rs.isReserved(1, item.EventID).Equals("true"))
-                {
-                    evm.reserver = 1;
-                }
-                else
-                {
-                    evm.reserver = 0;
-                }
-                lists.Add(evm);
+                liste.Add(
+                    new EventViewModel
+                    {
+                        EventID = item.EventID,
+                        Title = item.Title,
+                        Description = item.Description,
+                        place = item.place,
+                        StartDate = item.StartDate,
+                        EndDate = item.EndDate,
+                        Image = item.Image,
+                        Price = item.Price
+                    });
             }
-            
-        
-                if (!String.IsNullOrEmpty(searchString))
-                {
 
-
-                    lists = lists.Where(c => c.Titre== searchString).ToList();
-
-
-                    return View(lists);
-
-                
-
-
-            }
-            return View(lists);
+            return View(liste);
         }
+
         // GET: Event/Details/5
         public ActionResult Details(int id)
         {
+            return View();
+        }
+
+        // GET: Event/View/5
+        public ActionResult View (int id)
+        {
+            //var v = ds.GetById(id);
+            RapportModel rapport = new RapportModel();
+            //DepencesViewModel dvm = new DepencesViewModel();
+            rapport.TotalDepence = es.sumDepence(es.GetById(id));
+            rapport.RevenueNet = es.revenueNet(es.GetById(id));
+            rapport.PourcentageGain = es.pourcentageGain(es.GetById(id));
 
 
-            Event e = es.GetById(id);
-            EventViewModel evm = new EventViewModel();
-            evm.Id = e.EventID;
-            evm.DateDebut = e.DateDebut;
-            evm.DateFin = e.DateFin;
-            evm.Description = e.Description;
-            evm.Image = e.Image;
-            evm.UserId = 1;
-            evm.Lieu = e.Lieu;
-            evm.Titre = e.Titre;
-           
-            return View(evm);
+
+            return View(rapport);
         }
 
         // GET: Event/Create
         public ActionResult Create()
         {
-            ViewBag.u = User.Identity.GetUserName();
             return View();
         }
 
         // POST: Event/Create
         [HttpPost]
-        public ActionResult Create(EventViewModel evm, HttpPostedFileBase Image,string id)
+        public ActionResult Create(FormCollection collection)
         {
-            Event e = new Event() { Categorie = (EventDomain.Entities.Categorie)evm.Categorie };
+            try
+            {
+                // TODO: Add insert logic here
 
-            e.EventID= evm.Id;
-            e.DateDebut = evm.DateDebut;
-            e.DateFin = evm.DateFin;
-            e.Description = evm.Description;
-            e.Image =   Image.FileName;
-            e.Titre = evm.Titre;
-            e.Lieu = evm.Lieu;
-            e.UserId =Int32.Parse(id);
-
-           
-
-            Image.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), Image.FileName));
-            es.Add(e);
-            es.Commit();
-            return RedirectToAction("Index");
-            
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Event/Edit/5
         public ActionResult Edit(int id)
         {
-            Event e = es.GetById(id);
-            EventViewModel evm = new EventViewModel();
-            evm.Id = e.EventID;
-            evm.DateDebut = e.DateDebut;
-            evm.DateFin = e.DateFin;
-            evm.Description = e.Description;
-            evm.Image = e.Image;
-            evm.UserId = e.UserId;
-            evm.Lieu = e.Lieu;
-            evm.Titre = e.Titre;
-            evm.Categorie = (EventClient.Models.Categorie)e.Categorie;
-            return View(evm);
+            return View();
         }
 
         // POST: Event/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, EventViewModel evm, HttpPostedFileBase Image)
+        public ActionResult Edit(int id, FormCollection collection)
         {
+            try
+            {
+                // TODO: Add update logic here
 
-           
-            Event e = es.GetById(id);
-            e.EventID = id;
-            e.DateDebut = evm.DateDebut;
-            e.DateFin = evm.DateFin;
-            e.Description = evm.Description;
-            e.Image = Image.FileName;
-            e.Titre = evm.Titre;
-            e.Lieu = evm.Lieu;
-            e.Categorie = (EventDomain.Entities.Categorie)evm.Categorie;
-           
-            es.Update(e);
-           // Image.SaveAs(Path.Combine(Server.MapPath("~/Content/images/"), Image.FileName));
-            es.Commit();
-            return RedirectToAction("Index");
-           
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Event/Delete/5
         public ActionResult Delete(int id)
         {
-            Event e = es.GetById(id);
-            es.Delete(e);
-            es.Commit();
-            return RedirectToAction("Index");
+            return View();
         }
 
         // POST: Event/Delete/5
@@ -205,24 +149,5 @@ namespace EventClient.Controllers
                 return View();
             }
         }
-        public ActionResult CreateRes(int id)
-        {
-            Reservation r = new Reservation();
-            r.DateReservation = DateTime.Now.ToString();
-            r.UserID = 1;
-            r.EventId = id;
-            rs.Add(r);
-            rs.Commit();
-            return RedirectToAction("Index");
-        }
-        public ActionResult DeleteRes(int id)
-        {
-
-            var r = rs.getByUE(1, id);
-            rs.Delete(r);
-            rs.Commit();
-            return RedirectToAction("Index");
-        }
-        
     }
 }

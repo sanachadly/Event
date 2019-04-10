@@ -1,5 +1,5 @@
 ﻿using EventDomain.Entities;
-using EventServicePatern;
+using ServicePattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +10,11 @@ namespace EventServices
 {
    public interface IEventService: IService<Event>
     {
+        float sumDepence(Event e);
+        float revenueNet(Event e);
+
+        float pourcentageGain(Event e);
+
+        List<Event> BestOf();
     }
 }

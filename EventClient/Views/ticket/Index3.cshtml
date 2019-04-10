@@ -1,0 +1,15 @@
+﻿@model EventClient.Models.TicketViewModel
+
+@using (Html.BeginForm("Charge", "Form", FormMethod.Post))
+    {
+@Html.AntiForgeryToken()
+<script src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="pk_test_yFYMtDKzGH2aZqo6S0g0YJTN002wivq7oZ"
+        data-amount="90000"
+        data-name="Funny Ant"
+        data-description='JavaScript Framework Guide'
+        data-image="/Content/images/main-book.png">
+</script>
+
+    }

@@ -11,9 +11,6 @@ namespace EventDomain.Entities
     public enum Categorie { Business, Entertainement, Occasion, Culture }
     public class Event
     {
-        
-  
-            
             public int EventID { get; set; }
             public String Titre { get; set; }
             public Categorie Categorie { get; set; }
@@ -22,14 +19,23 @@ namespace EventDomain.Entities
             public String Image { get; set; }
             public String Lieu { get; set; }
             public String Description { get; set; }
-
-            public virtual ICollection<User> Users { get; set; }
-            public virtual ICollection<Task> Tasks { get; set; }
+             public float Price { get; set; }
 
 
+        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Depences> dep { get; set; }
+
+        public virtual ICollection<Task> Tasks { get; set; }
+     //  public virtual ICollection<Ticket> Tickets { get; set; }
 
 
 
+          public Event( )
+        {
 
         }
+
+
+
+    }
 }
