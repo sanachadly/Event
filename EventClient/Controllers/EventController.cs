@@ -28,11 +28,10 @@ namespace EventClient.Controllers
                 evm.Id= item.EventID;
                 evm.DateDebut = item.DateDebut;
                 evm.DateFin = item.DateFin;
-                evm.Description = item.Description;
+     
                 evm.Image = item.Image;
                 evm.UserId = item.UserId;
-                evm.Lieu = item.Lieu;
-                evm.Titre = item.Titre;
+              
               evm.Categorie = (EventClient.Models.Categorie)item.Categorie;
                 if (rs.isReserved(1, item.EventID).Equals("true"))
                 {
@@ -110,27 +109,7 @@ namespace EventClient.Controllers
             return View(evm);
         }
 
-        // GET: Event/Create
-        public ActionResult Create()
-        {
-            ViewBag.u = User.Identity.GetUserName();
-            return View();
-        }
-
-        // POST: Event/Create
-        [HttpPost]
-        public ActionResult Create(EventViewModel evm, HttpPostedFileBase Image,string id)
-        {
-            Event e = new Event() { Categorie = (EventDomain.Entities.Categorie)evm.Categorie };
-
-            e.EventID= evm.Id;
-            e.DateDebut = evm.DateDebut;
-            e.DateFin = evm.DateFin;
-            e.Description = evm.Description;
-            e.Image =   Image.FileName;
-            e.Titre = evm.Titre;
-            e.Lieu = evm.Lieu;
-            e.UserId =Int32.Parse(id);
+       
 
            
 
