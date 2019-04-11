@@ -18,6 +18,8 @@ namespace EventServices
 
         }
 
+        // crud
+
         //public List<Event> BestOf()
         //{
             //List<Event> totalEvent = GetAll().ToList();
