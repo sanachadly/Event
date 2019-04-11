@@ -15,6 +15,8 @@ namespace EventServices
 
 
     {
+
+        // integrate template
         private static IDatabaseFactory databaseFactory = new DatabaseFactory();
         private static IUnitOfWork ut = new UnitOfWork(databaseFactory);
 
